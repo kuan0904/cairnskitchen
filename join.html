@@ -1,0 +1,120 @@
+﻿
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body>
+    <style >
+        .fa {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 15;
+}
+    </style>
+    <table  align="center"   style="border-width:1px;border-color:black ; border-style:dotted  " cellpadding="0" cellspacing=" 0">
+        <tr>
+            <td colspan="2"><img src="img/logo.png" /></td>
+            <td colspan="2" style="text-align: right">
+                訂單號碼:<b><font size="6"><%=ord_code  %></font> </b> <br />
+                訂購日期:<%=ord_date %><br />
+                付款方式:<%=paymode %><br />
+                訂單狀態:<%=ord_status%><br />
+                付款狀態:<%=paid %>
+            </td>
+        </tr>
+        <tr>
+            <td>訂購人:</td>
+            <td><%=ordname %></td>
+            <td>取貨方式: </td>
+            <td>宅配到府</td>
+        </tr>
+        <tr>
+            <td>訂購人Email: </td>
+            <td><%=ordemail  %></td>
+            <td>收件時間:</td>
+            <td><%=receivetime %></td>
+        </tr>
+        <tr>
+            <td>訂購人電話: </td>
+            <td><%=ordphone  %></td>
+            <td>發票資訊:</td>
+            <td><%=invoice  %> </td>
+        </tr>
+        <tr>
+            <td>姓別: </td>
+            <td><%=ordgender%></td>
+            <td>統一編號:</td>
+            <td><%=companyno %></td>
+        </tr>
+        <tr>
+            <td>收件人:</td>
+            <td><%=shipname %></td>
+            <td>發票抬頭:</td>
+            <td><%=title %>  </td>
+        </tr>
+
+        <tr>
+            <td>收件人電話: </td>
+            <td><%=shipphone  %></td>
+            <td>收件時間:</td>
+            <td><%=receivetime %> </td>
+        </tr>
+        <tr>
+            <td>姓別: </td>
+            <td><%=shipgender  %></td>
+            <td></td>
+            <td> </td>
+        </tr>
+
+        <tr>
+            <td>收件地址</td>
+            <td> <%=shipaddress %></td>
+            <td>
+                備註說明：
+            </td>
+            <td>
+                <%=contents %>
+            </td>
+
+
+        </tr>
+
+
+        <tr>
+            <td colspan="4">訂購明細</td>
+
+        </tr>
+        <tr>
+            <td>品名</td>
+            <td>單價</td>
+            <td>數量</td>
+            <td>小計</td>
+        </tr>
+        <asp:Repeater ID="Repeater1" runat="server">
+            <ItemTemplate>
+                <tr>
+
+                    <td><%#Eval("productname") %></td>
+                    <td><%#Eval("price") %></td>
+                    <td><%#Eval("num") %></td>
+                    <td><%#Eval("amount") %></td>
+                </tr>
+
+            </ItemTemplate>
+
+        </asp:Repeater>
+        <tr>
+            <td>商品小計$<%=SubPrice %></td>
+            <td>運費:$<%=DeliveryPrice %></td>
+            <td>訂單金額:$<%=totalprice%></td>
+            <td></td>
+        </tr>
+
+
+    </table>
+
+</body>
+</html>

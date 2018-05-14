@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+    
+<!-- Mirrored from meandmax.github.io/lory/ by HTTrack Website Copier/3.x [XR&CO'2004], Fri, 02 Sep 2016 10:22:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>lory</title>
+	<meta name="description" content="Touch enabled minimalistic slider written in vanilla JavaScript">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/slider.css" />
+
+</head>
+<body>
+
+<div>
+	<div class="slider js_ease ease">
+		<div class="frame js_frame">
+			<ul class="slides js_slides">
+				<li class="js_slide">
+                   	<div class="uptype mosaic-block fade01">
+						<a href="#" class="mosaic-overlay">&nbsp;</a>
+						<div class="mosaic-backdrop up-img"><img src="images/idx-pro-img-01.jpg"></div>
+						<div class="up-info">
+							<a href="#">
+							<div class="up-arrow"></div>
+							<div class="up-title">頂級羊肋排</div>
+							<div class="up-explan">此部位取自牛隻肋脊部靠近背脊之肌肉</div>
+							<div class="up-price">$<span>1980</span></div>
+							</a>                    
+						</div>
+					</div>
+				</li>
+
+				<li class="js_slide">
+                	<div class="downtype mosaic-block fade02">
+                    	<a href="#" class="mosaic-overlay">&nbsp;</a>
+						<div class="down-info">
+							<a href="#">
+                            <div class="down-arrow"></div>
+                            <div class="down-title">頂級羊肋排</div>
+							<div class="down-explan">此部位取自牛隻肋脊部靠近背脊之肌肉</div>
+							<div class="down-price">$<span>2980</span></div>
+							</a>                    
+						</div>
+                		<div class="mosaic-backdrop down-img"><img src="images/idx-pro-img-02.jpg"></div>
+					</div>
+				</li>
+				<li class="js_slide">
+                   	<div class="uptype mosaic-block fade01">
+						<a href="#" class="mosaic-overlay">&nbsp;</a>
+						<div class="mosaic-backdrop up-img"><img src="images/idx-pro-img-03.jpg"></div>
+						<div class="up-info">
+							<a href="#">
+							<div class="up-arrow"></div>
+							<div class="up-title">頂級羊肋排</div>
+							<div class="up-explan">此部位取自牛隻肋脊部靠近背脊之肌肉</div>
+							<div class="up-price">$<span>3980</span></div>
+							</a>                    
+						</div>
+					</div>
+				</li>
+
+				<li class="js_slide">
+                	<div class="downtype mosaic-block fade02">
+                    	<a href="#" class="mosaic-overlay">&nbsp;</a>
+						<div class="down-info">
+							<a href="#">
+                            <div class="down-arrow"></div>
+                            <div class="down-title">頂級羊肋排</div>
+							<div class="down-explan">此部位取自牛隻肋脊部靠近背脊之肌肉</div>
+							<div class="down-price">$<span>4980</span></div>
+							</a>                    
+						</div>
+                		<div class="mosaic-backdrop down-img"><img src="images/idx-pro-img-04.jpg"></div>
+					</div>
+				</li>
+				<li class="js_slide">
+                   	<div class="uptype mosaic-block fade01">
+						<a href="#" class="mosaic-overlay">&nbsp;</a>
+						<div class="mosaic-backdrop up-img"><img src="images/idx-pro-img-01.jpg"></div>
+						<div class="up-info">
+							<a href="#">
+							<div class="up-arrow"></div>
+							<div class="up-title">頂級羊肋排</div>
+							<div class="up-explan">此部位取自牛隻肋脊部靠近背脊之肌肉</div>
+							<div class="up-price">$<span>5980</span></div>
+							</a>                    
+						</div>
+					</div>
+				</li>
+
+				<li class="js_slide">
+                	<div class="downtype mosaic-block fade02">
+                    	<a href="#" class="mosaic-overlay">&nbsp;</a>
+						<div class="down-info">
+							<a href="#">
+                            <div class="down-arrow"></div>
+                            <div class="down-title">頂級羊肋排</div>
+							<div class="down-explan">此部位取自牛隻肋脊部靠近背脊之肌肉</div>
+							<div class="down-price">$<span>6980</span></div>
+							</a>                    
+						</div>
+                		<div class="mosaic-backdrop down-img"><img src="images/idx-pro-img-02.jpg"></div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<span class="js_prev prev"></span>
+		<span class="js_next next"></span>
+	</div>
+</div>
+</body>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/mosaic.1.0.1.js"></script>
+	<script type="text/javascript">  
+		jQuery(function($){
+			$('.fade01,.fade02').mosaic();
+	    });
+	</script>    
+    
+    <script src="js/lory.js"></script>
+    <script>
+	'use strict';
+		document.addEventListener('DOMContentLoaded', function () {
+        	var ease = document.querySelector('.js_ease');
+
+	        // http://easings.net/
+
+            lory(ease, {
+                infinite: 4,
+                slidesToScroll: 2,
+                slideSpeed: 300,
+                ease: 'cubic-bezier(0.455, 0.03, 0.515, 0.955)',
+                enableMouseEvents: true
+            });
+			
+    	});
+		
+    </script>
+</html>

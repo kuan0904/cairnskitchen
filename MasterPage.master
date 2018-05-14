@@ -1,0 +1,280 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>        
+    <title > Cairns廚房| 肉品及食材銷售專門</title>
+    <meta name="keywords" content="凱恩斯廚房, cairns,CK,網路廚房,肉品,食材,銷售專門"/>
+    <meta name="description" content="" />
+<meta itemprop="name" content="Cairns廚房::肉品及食材銷售專門">
+<meta itemprop="image" content="http://www.cairnskitchen.com/images/about-banner.jpg">
+<meta itemprop="description" content="任何一種愛 都不比對美食的熱愛真切
+- George Bernard Shaw
+Cairns kitchen
+一直以來堅持頂級肉品
+才能夠帶給客戶最高級的美食體驗
+因為沒有人會抗拒對美味的追求
+如同吃到美食後帶來的感動
+現在，我們決定將這份堅持向外萌芽。
+
+我們以挖掘頂級食品為使命
+精挑細選各項優質肉品及食材
+讓您不論在何時都能與家人朋友
+共度美好的饗宴時光。
+There is no sincerer love than
+the love of food ">
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0" />
+    <meta name="author" content="kuan0904@ms16.hinet.net"/>
+    <meta name="copyright" content="本網頁著作權屬CK網路廚房所有"/>
+    <!--fb meta-->
+
+      <meta property="fb:app_id" content="1155212207854130"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="::CK網路廚房::cairns"/>
+    <meta property="og:url" content="http://www.cairnskitchen.com/"/>
+    <meta property="og:image" content="http://www.cairnskitchen.com/images/about-banner.jpg"/>
+    <meta name="og:description" content="任何一種愛 都不比對美食的熱愛真切
+- George Bernard Shaw
+Cairns kitchen
+一直以來堅持頂級肉品
+才能夠帶給客戶最高級的美食體驗
+因為沒有人會抗拒對美味的追求
+如同吃到美食後帶來的感動
+現在，我們決定將這份堅持向外萌芽。
+
+我們以挖掘頂級食品為使命
+精挑細選各項優質肉品及食材
+讓您不論在何時都能與家人朋友
+共度美好的饗宴時光。
+There is no sincerer love than
+the love of food"/>    
+
+
+    	<link rel="stylesheet" type="text/css" href="css/slider.css?<%=  DateTime.Now.ToString ("yyyyMMddhhmmss")%>" />
+
+    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css"/>
+   <script type="text/javascript" src="js/jquery.min.js" charset="utf-8"></script>
+    <!--
+        jquery.min.js 用這個才能有RWD jquery-1.11.1.min.不行
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js" charset="utf-8"></script>
+        -->
+      
+    <script type="text/javascript" src="js/menu.js"></script> 
+         <!--圖片淡入-->
+    <script src="js/mosaic.1.0.1.js"></script>  
+     <!--輪播-->  
+    <script src="js/lory.js"></script> 
+     <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>   
+    <script type="text/javascript">
+    var storage = 10;
+	function goodsAdd(p_PRODUCTID, p_num,p_kind) {
+	    $.post('addcars.ashx', {
+	        "p_ID": p_PRODUCTID
+            , "p_num": p_num
+            ,"kind":p_kind
+            , "_": new Date().getTime()
+	    }, function (data) {
+	         if (data == "-3") {
+	            alert('該商品已經下架');
+	         } else if (data != "") {
+	             storage = data;
+	             alert('該商品庫存數不足');	           
+	        } else if (data == "") {
+	            if (p_kind == 'add') {
+	                alert('成功放入購物車');
+	          //      location.href = 'cart.aspx';
+	                }
+	            else
+	                alert('數量更改完畢');
+	        } else if (data == "0") {
+	            alert('資料有誤');
+	        }
+	    });
+	}
+
+
+	function getPageName() {
+	    var url = window.location.pathname;
+	    var index = url.lastIndexOf("/") + 1;
+	    var filenameWithExtension = url.substr(index);
+	    var filename = filenameWithExtension.split(".")[0];
+	    return filename;
+	}
+
+	function validEmail(v) {
+	    var r = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+	    return (v.match(r) == null) ? false : true;
+	}
+	function GetURLParameter(sParam) { var sPageURL = window.location.search.substring(1); var sURLVariables = sPageURL.split('&'); for (var i = 0; i < sURLVariables.length; i++) { var sParameterName = sURLVariables[i].split('='); if (sParameterName[0] == sParam) return sParameterName[1]; } }
+
+	function base64_encode(a) {
+	    return Base64.encode(a)
+	}
+	function base64_decode(a) {
+	    return Base64.decode(a)
+	}
+
+	var Base64 = {
+	    _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
+	    encode: function (input) { var output = ""; var chr1, chr2, chr3, enc1, enc2, enc3, enc4; var i = 0; input = Base64._utf8_encode(input); while (i < input.length) { chr1 = input.charCodeAt(i++); chr2 = input.charCodeAt(i++); chr3 = input.charCodeAt(i++); enc1 = chr1 >> 2; enc2 = ((chr1 & 3) << 4) | (chr2 >> 4); enc3 = ((chr2 & 15) << 2) | (chr3 >> 6); enc4 = chr3 & 63; if (isNaN(chr2)) { enc3 = enc4 = 64; } else if (isNaN(chr3)) { enc4 = 64; } output = output + this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) + this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4); } return output; },
+	    decode: function (input) { var output = ""; var chr1, chr2, chr3; var enc1, enc2, enc3, enc4; var i = 0; input = input.replace(/[^A-Za-z0-9\+\/\=]/g, ""); while (i < input.length) { enc1 = this._keyStr.indexOf(input.charAt(i++)); enc2 = this._keyStr.indexOf(input.charAt(i++)); enc3 = this._keyStr.indexOf(input.charAt(i++)); enc4 = this._keyStr.indexOf(input.charAt(i++)); chr1 = (enc1 << 2) | (enc2 >> 4); chr2 = ((enc2 & 15) << 4) | (enc3 >> 2); chr3 = ((enc3 & 3) << 6) | enc4; output = output + String.fromCharCode(chr1); if (enc3 != 64) { output = output + String.fromCharCode(chr2); } if (enc4 != 64) { output = output + String.fromCharCode(chr3); } } output = Base64._utf8_decode(output); return output; },
+	    _utf8_encode: function (string) { string = string.replace(/\r\n/g, "\n"); var utftext = ""; for (var n = 0; n < string.length; n++) { var c = string.charCodeAt(n); if (c < 128) { utftext += String.fromCharCode(c); } else if ((c > 127) && (c < 2048)) { utftext += String.fromCharCode((c >> 6) | 192); utftext += String.fromCharCode((c & 63) | 128); } else { utftext += String.fromCharCode((c >> 12) | 224); utftext += String.fromCharCode(((c >> 6) & 63) | 128); utftext += String.fromCharCode((c & 63) | 128); } } return utftext; },
+	    _utf8_decode: function (utftext) { var string = ""; var i = 0; var c = c1 = c2 = 0; while (i < utftext.length) { c = utftext.charCodeAt(i); if (c < 128) { string += String.fromCharCode(c); i++; } else if ((c > 191) && (c < 224)) { c2 = utftext.charCodeAt(i + 1); string += String.fromCharCode(((c & 31) << 6) | (c2 & 63)); i += 2; } else { c2 = utftext.charCodeAt(i + 1); c3 = utftext.charCodeAt(i + 2); string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63)); i += 3; } } return string; }
+	}
+
+</script>
+
+</head>
+<body>
+    <link rel="stylesheet" href="css/style.css?<%=  DateTime.Now.ToString ("yyyyMMddhhmmss")%>" type="text/css" media="screen" />
+   <!--手機按鈕-->
+<div class="inner">
+	<div class="inner-right">
+    	<a href="join.aspx" class="in-join-btn"></a>
+        <a href="personal.aspx" class="in-personal-btn"></a>
+    	<a href="cart.aspx" class="in-cart-btn"></a>
+    </div>
+    <div class="logo-div">
+    	<a href="index.aspx"><img src="images/inside-logo.png"></a>
+    </div>
+	<a id="menu-toggle" class="button dark" href="#"><i class="fa fa-bars fa-2x"></i></a>
+	<nav id="navigation">
+		<ul id="main-menu">
+			<li class="parent-right parent-h"><a href="about.aspx">我們的堅持</a></li>
+			<li class="parent-right"><a href="pro-list.aspx">嚴選商品</a></li>
+			<li class="parent-right"><a href="note-list.aspx">料理日誌</a></li>
+			<li class="parent-right"><a href="service.aspx">我們的服務</a></li>
+            <li class="parent-share">
+            	<div class="per-share">
+                	<div class="pshare-fb"><a href="https://www.facebook.com/Cairnskitchen/" target="_blank"></a></div>
+                    <!--<div class="pshare-tw"><a href=""></a></div>-->
+                    <div class="pshare-gg"><a href="http://cairnskitchen520.pixnet.net/blog" target="_blank"></a></div>
+                </div>
+            </li>
+		</ul>
+	</nav>
+</div>
+<!-- menu -->
+<div class="<%=div_name%>">
+	<div class="idx-share">
+		<a href="https://www.facebook.com/Cairnskitchen/" target="_blank" class="share-fb"></a>
+        <!--<a href="" class="share-tw"></a>-->
+        <a href="http://cairnskitchen520.pixnet.net/blog" target="_blank" class="share-gg"></a>
+    </div>
+	<div class="idx-cart">
+		<a href="join.aspx" class="join-btn"></a>
+    	<a href="personal.aspx" class="personal-btn"></a>
+    	<a href="cart.aspx" class="cart-btn"></a>
+	</div>
+    <div class="idx-logo">
+    	<a href="http://www.cairnskitchen.com/"><img src="images/index-logo.png"></a>
+    </div>
+    <div class="idxmenu">
+		<ul>
+			<li class="menu-left"><a href="about.aspx">我們的堅持</a></li>
+			<li class="menu-left"><a href="pro-list.aspx">嚴選商品</a></li>
+			<li class="menu-right"><a href="service.aspx">我們的服務</a></li>
+			<li class="menu-right"><a href="note-list.aspx">料理日誌</a></li>
+			<div class="inside-logo"><a href="index.aspx"><img src="images/inside-logo.png"></a></div>
+		</ul>
+	</div>
+</div>
+     <form id="form1" runat="server">
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">        
+        </asp:ContentPlaceHolder> 
+        </form>   
+
+<!--商品輪播-->
+    <!--
+        加from 會錯<div class="related-w">
+        加from 不會<div class="pro-w">
+        -->
+
+    <asp:MultiView ID="MultiView1" runat="server">
+        <asp:View ID="View1" runat="server">
+            <div class="related-w">
+              <div class="related-w-title"><img src="images/otherpro-title.png"></div>
+              <div class="slider js_ease ease">
+                <div class="frame js_frame">
+                  <ul class="slides js_slides">
+                    <asp:Repeater ID="pd_push" runat="server">
+                       <ItemTemplate >
+                        <li class="js_slide">
+                            <div class="uptype mosaic-block fade0<%#Container.ItemIndex%2 ==0?"1":"2" %>"> <a href="pro-info.aspx?p_id=<%#Eval("p_id") %>" class="mosaic-overlay">&nbsp;</a>
+                            <%#Container.ItemIndex%2 == 0 ? "<div class=\"mosaic-backdrop up-img\"><img src=\"upload/" + Eval("banner").ToString() + "?" + DateTime.Now.ToString ("yyyyMMddhhmmss")  + "\" width=\"200\" height =\"200\"></div>" : ""%>
+                            <div class="up-info"> <a href="pro-info.aspx?p_id=<%#Eval("p_id") %>">
+                                <div class="up-arrow"></div>
+                                <div class="up-title"><%#Eval("productname") %></div>
+                                <div class="up-explan"><%#Eval("memo") %></div>
+                                <div class="up-price"><span style ="text-decoration: line-through;color : grey ;font-size:18px;"><%#Eval("Pricing") %></span>$<span><%#Eval("price") %></span></div>
+                            </a> </div>
+                            <%#Container.ItemIndex%2 == 1 ? " <div class=\"mosaic-backdrop down-img\"><img src=\"upload/" + Eval("banner").ToString () + "\" width=\"200\" height =\"200\"></div>":""%>
+                            </div>
+                            </li>
+               
+                        </ItemTemplate>
+                      </asp:Repeater>     
+                  </ul>
+                </div>
+                <span class="js_prev prev"></span> <span class="js_next next"></span> </div>
+            </div>
+            <script>
+	'use strict';
+		document.addEventListener('DOMContentLoaded', function () {
+        	var ease = document.querySelector('.js_ease');
+
+	        // http://easings.net/
+
+            lory(ease, {
+                infinite: 4,
+                slidesToScroll: 1,
+                slideSpeed: 300,
+                ease: 'cubic-bezier(0.455, 0.03, 0.515, 0.955)',
+                enableMouseEvents: true
+            });
+    	});
+ </script>
+        </asp:View>
+    </asp:MultiView>
+
+ 
+   <!--Copyright-->
+<div class="copy-box">
+<%=copyright  %>
+</div>
+    <!--圖片淡入-->
+<script type="text/javascript">  
+	jQuery(function($){
+		$('.fade01,.fade02,.fade03').mosaic();
+    });
+</script>  
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.share-tw,.share-fb,.share-gg,.cart-btn,.note-more,.attentio-btn,.personal-btn,.in-personal-btn,.in-cart-btn,.join-btn,.in-join-btn').append('<span class="hover"></span>').each(function () {
+	  		var $span = $('> span.hover', this).css('opacity', 0);
+	  		$(this).hover(function () {
+	    		$span.stop().fadeTo(300, 1);
+	 		}, function () {
+	   	$span.stop().fadeTo(300, 0);
+	  		});
+		});
+	});
+</script>
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-86535603-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+</body>
+</html>

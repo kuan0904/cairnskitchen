@@ -1,0 +1,71 @@
+@charset "utf-8";
+/* CSS Document */
+
+/**** Content ****/
+.albums_main{
+	width:870px;
+	margin:60px auto 40px auto;
+}
+#content{width:100%; padding:0px;}
+.clearfix .hidden{display: none;}
+
+/**** Demos ****/
+#container {
+	font-family: "微軟正黑體", "Microsoft JhengHei", serif;
+	margin-bottom: 0px;
+	border-radius: 0px;
+	clear: both;
+}
+
+.wrapper .centered { margin: 0 auto; }
+
+.box {
+	font-family: "微軟正黑體", "Microsoft JhengHei", serif;
+	margin: 5px;
+	font-size: 12px;
+	line-height: normal;
+	float: left;
+	text-decoration: none;
+	color:#000000;
+}
+
+.box img,
+#tumblelog img {
+  display: block;
+  width: 100%;
+  height:100%;
+}
+
+.rtl .box {
+  float: right;
+  text-align: right; 
+  direction: rtl;
+}
+.co600 {width:250px; height:410px; background:#FFFFFF; font-size:12px; margin:0 20px 40px 20px;}
+.co600 .co600-img{width:250px; height:250px; position:relative;}
+.co600 .co600-img .img-mark{position:absolute; top:0; left:0; width:40px; height:40px;}
+.co600 .co600-info{width:250px; height:100px; border-bottom:1px solid #CCCCCC; text-align:left; padding:10px 0; color:#666666;}
+.co600 .co600-info .co600-title{ font-size:18px; line-height:40px; color:#000000;}
+.co600 .co600-info .co600-brief{ font-size:15px; line-height:40px; line-height:20px;}
+.co600 a .co600-price{width:250px; height:60px; text-align:right; color:#5f703b; font-size:24px; line-height:60px;}
+.co600 a:hover .co600-price{color:#d54141;}
+.co600 a .co600-price span{font-size:15px; line-height:60px; padding:0 5px 0 0;}
+
+
+
+@media (max-width: 1290px) {
+.albums_main{width:870px;}
+}
+
+@media (max-width: 870px) {
+.albums_main{width:580px;}
+}
+
+@media (max-width: 790px) {
+.albums_main{width:580px;}
+}
+
+@media (max-width: 530px) {
+.albums_main{width:270px;}
+}
+
