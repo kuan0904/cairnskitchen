@@ -398,7 +398,10 @@ public partial class spadmin_product : System.Web.UI.Page
             cmd.ExecuteNonQuery();
             cmd.Dispose();
             conn.Close();
-            link_edit(obj, e);
+            if (obj.CommandName == "pic1") Image1.ImageUrl = "";
+            if (obj.CommandName == "pic2") Image2.ImageUrl = "";
+            if (obj.CommandName == "pic3") Image3.ImageUrl = "";
+
         }
     }
 }
